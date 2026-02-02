@@ -18,21 +18,23 @@ source("genptype_marking_func.R")
 #       信息）
 
 # 结果输出路径，比如"C:/Users/Administrator/Desktop/workspace/2025.10.30hitom"
-output_path = "C:/Users/Administrator/Desktop/workspace/2025.10.30hitom"
+output_path = "C:/Users/Administrator/Desktop"
 
 # 数据所在文件夹路径，
 # 比如"C:/Users/Administrator/Desktop/workspace/2025.10.30hitom/data/h7"
-path_to_your_data_folder = "C:/Users/Administrator/Desktop/workspace/2025.10.30hitom/data/h7"
+path_to_your_data_folder = "C:/Users/Administrator/Desktop/Hi-TOM-table-orgnization/test"
 
 # 结果名字
-name_the_result_file = "hitom7"
+name_the_result_file = "test"
 
 # 运行流程。
 summarize_data_in_folder(path_to_your_data_folder, 
                          name_the_result_file, 
                          output_path,
                          min_threshold=0.25, # 信号强度弱于这个值的会被过滤
-                         compare_index=1.5 # 过滤弱信号并重新标准化后如果存在两个信号，信号比值小于此比例的认为是杂合子
+                         compare_index=1.5 # 过滤弱信号并重新标准化后,
+                         #如果存在两个信号，信号比值小于此比例的认为是杂合子,
+                         #信号比值大于该比例会被标记“？”，建议人工核对
                          )
 
 # 接下来需要靠你自己整理表格了，祝君好运。
