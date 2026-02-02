@@ -1,5 +1,50 @@
 # Tiny tool for Hi-TOM genotyping data orgnization
 
+### Introduction
+Though Hi-TOM do offer analysis on genotype based on sequence information, it provide little information we need. This project is a tiny tool to extract genotype, specific mutation, and organise these data.
+
+It determines the genotype with a `min_threshold` and a `compare_index`.
+Signal <= `min_threshold` is abandent, and the sample without signal left won't be shown;
+samples with more than 2 signals after filtering are marked as "error";
+samples with only one signal are marked as correspondent type;
+samples with 2 signals would compute the ratio of 2 figures, that within `compare_index` are marked as heterozygote, the rest marked as heterozygote with a "?".
+
+```mermaid
+graph TD
+    A[Genotype Determination Start] --> B[Filter Signals by min_threshold]
+    
+    B --> C{Any signals > min_threshold?}
+    C -->|No| D[No Output<br/>Sample Skipped]
+    C -->|Yes| E[Normalize Remaining Signals]
+    
+    E --> F[Count Normalized Signals]
+    
+    F -->|Signals > 2| G[Mark as: Error<br/>Too Many Signals]
+    F -->|Signals = 2| H[Calculate Ratio of Two Signals]
+    F -->|Signals = 1| I[Mark as: Homozygous]
+    
+    H --> J{Ratio within<br/>compare_index range?}
+    J -->|Yes| K[Mark as: Heterozygous]
+    J -->|No| L[Mark as: Homozygous with ?<br/>Needs Review]
+    
+    G --> M[Output Result]
+    I --> M
+    K --> M
+    L --> M
+    
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#ffccbc
+    style D fill:#f5f5f5
+    style E fill:#fff3e0
+    style G fill:#ffebee
+    style I fill:#e8f5e8
+    style K fill:#e8f5e8
+    style L fill:#fff3e0
+    style M fill:#f3e5f5
+```
+
+### To start with
 <img width="1409" height="987" alt="Git上传-1770002204600" src="https://github.com/user-attachments/assets/077a9e14-83ea-4f5a-8829-78b1a0cf3200" />
 
 After you upload your data to Hi-TOM website, you are likely to get results like this:
@@ -14,6 +59,25 @@ Put the `*Sequence.xls` file in a single folder. That's all preparation you need
 
 
 # Pipeline
+
+File structure:
+```sh
+C:.
+│  .gitignore
+│  filetree.txt
+│  LICENSE
+│  README.md # instruction
+│  
+└─genotyping_result_analysis
+        .Rhistory
+        genotyping_result_analysis.R # core function, single version
+        genotyping_result_analysis.Rproj
+        genptype_marking_func.R # core function, function version
+        main.R # you only need to run this
+        summarize_data_in_folder_func.R # read data
+
+```
+
 Clone the code from github.
 ```sh
 git clone https://github.com/CharlesV555/Hi-TOM-table-orgnization.git
@@ -29,6 +93,14 @@ Enter the main.R by R.
 
 follow the instruction in it.
 <img width="1002" height="473" alt="Git上传-1770003792356" src="https://github.com/user-attachments/assets/5e52b2a5-1700-4e1c-9145-b34aec25faa8" />
+
+### 注意ATTENTION
+<img width="268" height="161" alt="Tiny tool for Hi-TOM genotyping data orgnization-1770018191459" src="https://github.com/user-attachments/assets/edc6f27d-ff8e-46fc-bde7-1649ac67d365" />
+
+文件名中的***CAF1X***非常重要，示例中不同CAF基因数据能够分列展示就是依靠对文件名的正则识别进行的。如果你需要测试自己的基因命名，最后表格中名字分类只会有一类“CAF1_unknown”。可以修改`genotype_marking`相关的代码实现你的分类。
+It deserves your attention that the ***CAF1X*** part in names of original file is *SUPER IMPORTANT*. The division of columes in example is based on recognition of such part in file name using orthognal expressions. If you test your own data with different names, all these data would be displayed in only one colume named "CAF1_unknown". You may modify the part in `genotype_marking` to achieve proper sorting.
+<img width="598" height="200" alt="Tiny tool for Hi-TOM genotyping data orgnization-1770017828172" src="https://github.com/user-attachments/assets/bb8c4d00-f34b-4e34-88f5-8777aa3b9962" />
+
 
 # Example
 original data:
