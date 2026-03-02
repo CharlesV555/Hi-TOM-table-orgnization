@@ -45,23 +45,28 @@ graph TD
 ```
 
 ### To start with
-\n
+
+  
 <img width="1409" height="987" alt="Git上传-1770002204600" src="https://github.com/user-attachments/assets/077a9e14-83ea-4f5a-8829-78b1a0cf3200" />
 
-After you upload your data to Hi-TOM website, you are likely to get results like this:\n
+After you upload your data to Hi-TOM website, you are likely to get results like this:  
+
 <img width="198" height="200" alt="Git上传-1770002747009" src="https://github.com/user-attachments/assets/3b8e7d42-9983-49b6-be34-95eab0867a5f" />
 
-Each of them contain sequence and genotype information.\n
+Each of them contain sequence and genotype information. 
+
 <img width="247" height="206" alt="Git上传-1770002788107" src="https://github.com/user-attachments/assets/06e3e4fd-086c-409c-80d5-dc27ba8a769a" />
 
 
-Put the `*Sequence.xls` file in a single folder. That's all preparation you need for these data.\n
+Put the `*Sequence.xls` file in a single folder. That's all preparation you need for these data.\n  
+
 <img width="180" height="193" alt="Git上传-1770003746786" src="https://github.com/user-attachments/assets/7daa850c-eb01-4895-ab9e-f3b366e0a76a" />
 
 
 # Pipeline
 
-File structure:
+File structure:  
+
 ```sh
 C:.
 │  .gitignore
@@ -79,57 +84,74 @@ C:.
 
 ```
 
-Clone the code from github.
+Clone the code from github.  
+
 ```sh
 git clone https://github.com/CharlesV555/Hi-TOM-table-orgnization.git
 ```
-Enter the main.R by R.
+Enter the main.R by R.  
+
 <img width="632" height="196" alt="Git上传-1770002701691" src="https://github.com/user-attachments/assets/50c3ac0a-149e-4201-b477-bddf09fb8c3d" />
 
 
->[!Note] R requirement
->R version 4.5.1 (2025-06-13 ucrt) -- "Great Square Root"
->tidyverse-2.0.0
+  
+> **Note**  
+> R version 4.5.1 (2025-06-13 ucrt) -- "Great Square Root"  
+> tidyverse-2.0.0  
 > openxlsx-4.2.8
 
-follow the instruction in it.
+  
+
+follow the instruction in it.  
+
 <img width="1002" height="473" alt="Git上传-1770003792356" src="https://github.com/user-attachments/assets/5e52b2a5-1700-4e1c-9145-b34aec25faa8" />
 
-### 注意ATTENTION
+### 注意ATTENTION  
+
 <img width="268" height="161" alt="Tiny tool for Hi-TOM genotyping data orgnization-1770018191459" src="https://github.com/user-attachments/assets/edc6f27d-ff8e-46fc-bde7-1649ac67d365" />
 
-文件名中的***CAF1X***非常重要，示例中不同CAF基因数据能够分列展示就是依靠对文件名的正则识别进行的。如果你需要测试自己的基因命名，最后表格中名字分类只会有一类“CAF1_unknown”。可以修改`genotype_marking`相关的代码实现你的分类。
-It deserves your attention that the ***CAF1X*** part in names of original file is *SUPER IMPORTANT*. The division of columes in example is based on recognition of such part in file name using orthognal expressions. If you test your own data with different names, all these data would be displayed in only one colume named "CAF1_unknown". You may modify the part in `genotype_marking` to achieve proper sorting.
+文件名中的***CAF1X***非常重要，示例中不同CAF基因数据能够分列展示就是依靠对文件名的正则识别进行的。如果你需要测试自己的基因命名，最后表格中名字分类只会有一类“CAF1_unknown”。可以修改`genotype_marking`相关的代码实现你的分类。  
+
+It deserves your attention that the ***CAF1X*** part in names of original file is *SUPER IMPORTANT*. The division of columes in example is based on recognition of such part in file name using orthognal expressions. If you test your own data with different names, all these data would be displayed in only one colume named "CAF1_unknown". You may modify the part in `genotype_marking` to achieve proper sorting.  
+
 <img width="598" height="200" alt="Tiny tool for Hi-TOM genotyping data orgnization-1770017828172" src="https://github.com/user-attachments/assets/bb8c4d00-f34b-4e34-88f5-8777aa3b9962" />
 
 
 # Example
-original data:
+original data:  
+
 <img width="641" height="577" alt="Git上传-1770003529722" src="https://github.com/user-attachments/assets/c900dd20-d030-4536-9f74-dd1303452beb" />
 
 
-result:
+result:  
+
 <img width="641" height="577" alt="Git上传-1770003558668" src="https://github.com/user-attachments/assets/8b5a06e2-2337-4aa5-ab77-11b6b7854f37" />
 
 
-yeah you still need to do a little manupilation.
+yeah you still need to do a little manupilation.  
 
-That's all for this tiny tool. Goog luck !
 
----
+That's all for this tiny tool. Goog luck !  
+
+
+---  
+
 
 # Principle(in case of debugging)
 2 logics: reorgnise the data frame & judge the genotype based on signal information.
-### data frame
+### data frame  
+
 <img width="1117" height="457" alt="Git上传-1770003991584" src="https://github.com/user-attachments/assets/27f82ee5-bcf6-4437-a31e-f9fa7aafd9e0" />
 
 Apated from Liu et al., _Science China Life Sciences_, 2019.
 The information extraction is based on this layout. If bug rise in the future, it may due to the change of layout.
 
-### genotype judgement
+### genotype judgement  
+
 <img width="709" height="158" alt="Git上传-1770004240386" src="https://github.com/user-attachments/assets/cf02461a-4e3e-4a1a-9306-102dc799c12e" />
 
 Given the situation in Zhai-lab, I label samples with signals more than 2 as error.
 
-# Reference
+# Reference  
+
 Liu, Q., Wang, C., Jiao, X., Zhang, H., Song, L., Li, Y., Gao, C., & Wang, K. (2019). Hi-TOM: A platform for high-throughput tracking of mutations induced by CRISPR/Cas systems. _Science China Life Sciences_, _62_(1), 1～7. [https://doi.org/10.1007/s11427-018-9402-9](https://doi.org/10.1007/s11427-018-9402-9)
