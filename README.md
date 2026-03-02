@@ -45,16 +45,17 @@ graph TD
 ```
 
 ### To start with
+\n
 <img width="1409" height="987" alt="Git上传-1770002204600" src="https://github.com/user-attachments/assets/077a9e14-83ea-4f5a-8829-78b1a0cf3200" />
 
-After you upload your data to Hi-TOM website, you are likely to get results like this:
+After you upload your data to Hi-TOM website, you are likely to get results like this:\n
 <img width="198" height="200" alt="Git上传-1770002747009" src="https://github.com/user-attachments/assets/3b8e7d42-9983-49b6-be34-95eab0867a5f" />
 
-Each of them contain sequence and genotype information.
+Each of them contain sequence and genotype information.\n
 <img width="247" height="206" alt="Git上传-1770002788107" src="https://github.com/user-attachments/assets/06e3e4fd-086c-409c-80d5-dc27ba8a769a" />
 
 
-Put the `*Sequence.xls` file in a single folder. That's all preparation you need for these data.
+Put the `*Sequence.xls` file in a single folder. That's all preparation you need for these data.\n
 <img width="180" height="193" alt="Git上传-1770003746786" src="https://github.com/user-attachments/assets/7daa850c-eb01-4895-ab9e-f3b366e0a76a" />
 
 
